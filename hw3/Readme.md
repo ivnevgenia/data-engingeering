@@ -111,7 +111,7 @@ Answer: False
 Explanation: Clustering helps optimize queries on large tables, but it is not always necessary for smaller datasets.
 
 
-## ClickHouse Notes
+## ClickHouse-Notes
 ClickHouse is columnar, so queries behave similarly to BigQuery.
 Partitioning and ORDER BY in MergeTree act like BigQuery partitions and clusters.
 File(Parquet) ENGINE can simulate External Table behavior.
