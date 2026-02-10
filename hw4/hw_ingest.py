@@ -2,14 +2,13 @@ import duckdb
 import requests
 from pathlib import Path
 
-# Базовый URL для файлов по тегу 'fhv'
+
 BASE_URL = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/fhv"
 
 def download_and_convert_files():
     data_dir = Path("data") / "fhv"
     data_dir.mkdir(exist_ok=True, parents=True)
 
-    # Перебираем месяц36 для 2019 года
     year = 2019
     for month in range(1, 13):
         filename = f"fhv_tripdata_{year}-{month:02d}.csv.gz"
@@ -25,7 +24,7 @@ def download_and_convert_files():
         response = requests.get(url, stream=True)
         response.raise_for_status()
 
-        # Сохраняем файл
+
         with open(filepath, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
@@ -49,19 +48,19 @@ def update_gitignore():
             f.write('\n# Data directory\n/data/\n' if content else '# Data directory\n/data/\n')
 
 if __name__ == "__main__":
-    # Обновляем .gitignore
+
     update_gitignore()
-    # Загружаем файлы за 2019 год
+
     download_and_convert_files()
 
-    # Создаем duckdb базу и таблицы
     con = duckdb.connect("taxi_rides_ny.duckdb")
     con.execute("CREATE SCHEMA IF NOT EXISTS prod")
 
-    # Загружаем parquet файлы в таблицу
+
     con.execute("""
         CREATE OR REPLACE TABLE prod.fhv_tripdata AS
         SELECT * FROM read_parquet('data/fhv/*.parquet', union_by_name=true)
     """)
+
 
     con.close()
