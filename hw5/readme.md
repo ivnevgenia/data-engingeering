@@ -290,4 +290,4 @@ These questions cover the fundamental concepts of Bruin:
 6. **Lineage visualization** - Understanding asset relationships
 7. **First-time setup** - Creating tables from scratch
 
-For more information, refer to the [Bruin Documentation](https://getbruin.com/docs).
+For more information, refer to the [Bruin Documentation](https://getbruin.com/docs/bruin/).
