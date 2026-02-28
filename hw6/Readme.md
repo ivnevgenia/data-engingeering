@@ -1,6 +1,8 @@
 # Module 6 Homework: Spark Batch Processing
 This repository contains my solutions for Module 6 of the Data Engineering Zoomcamp by DataTalksClub. The homework focuses on Apache Spark fundamentals using PySpark to process New York Yellow Taxi trip data from November 2025.
 
+---
+
 ## Homework Questions & Solutions
 
 **Question 1**: Spark Installation & Version Check
